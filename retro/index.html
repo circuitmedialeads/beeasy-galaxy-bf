@@ -6,11 +6,13 @@
 <meta name="robots" content="noindex, nofollow">
 <title>Retro Set, 30% off | BEEASY</title>
 <meta name="description" content="Malik Beasley&#x27;s Retro Set, 30% off for Black Friday: $80.50 instead of $115. No code needed, the discount comes off automatically at checkout.">
+<script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1776797026873107');fbq('track','PageView');</script>
+<noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=1776797026873107&ev=PageView&noscript=1"></noscript>
 <meta name="theme-color" content="#f5f3ee">
 <meta property="og:type" content="website">
 <meta property="og:title" content="The Retro Set, 30% off | BEEASY">
 <meta property="og:description" content="Malik Beasley's own brand. 30% off, applied at checkout. No code.">
-<meta property="og:image" content="https://circuitmedialeads.github.io/beeasy-galaxy-bf/retro/share.jpg">
+<meta property="og:image" content="https://deals.beeasy.online/retro/share.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
@@ -347,7 +349,7 @@ body{padding-bottom:calc(70px + env(safe-area-inset-bottom))}
 
 <dialog id="size-dialog" aria-labelledby="size-title"><div class="sc-head"><h2 id="size-title">Size chart · Retro Set</h2><button type="button" id="size-close" aria-label="Close size chart">×</button></div><p class="sc-sub">Fits true to size. Inches, measured flat.</p><p class="sc-part">Windbreaker</p><table class="sc-table"><thead><tr><th scope="col">Size</th><th scope="col">Chest (pit to pit)</th><th scope="col">Length</th><th scope="col">Sleeve</th></tr></thead><tbody><tr><td>S</td><td class="na">–</td><td class="na">–</td><td class="na">–</td></tr><tr><td>M</td><td class="na">–</td><td class="na">–</td><td class="na">–</td></tr><tr><td>L</td><td class="na">–</td><td class="na">–</td><td class="na">–</td></tr><tr><td>XL</td><td class="na">–</td><td class="na">–</td><td class="na">–</td></tr><tr><td>XXL</td><td class="na">–</td><td class="na">–</td><td class="na">–</td></tr></tbody></table><p class="sc-part">Track pants</p><table class="sc-table"><thead><tr><th scope="col">Size</th><th scope="col">Waist</th><th scope="col">Inseam</th><th scope="col">Leg opening</th></tr></thead><tbody><tr><td>S</td><td class="na">–</td><td class="na">–</td><td class="na">–</td></tr><tr><td>M</td><td class="na">–</td><td class="na">–</td><td class="na">–</td></tr><tr><td>L</td><td class="na">–</td><td class="na">–</td><td class="na">–</td></tr><tr><td>XL</td><td class="na">–</td><td class="na">–</td><td class="na">–</td></tr><tr><td>XXL</td><td class="na">–</td><td class="na">–</td><td class="na">–</td></tr></tbody></table><p class="sc-note">Measurements are being added. Questions about fit? Email <a href="mailto:info@beeasy.online">info@beeasy.online</a>.</p></dialog>
 <script>
-const PAGE={"now": 8050, "styles": {"retro": {"label": null, "photo": 0, "out": ["L"], "handle": "be-easy-retro-set", "variants": {"S": 47413006205077, "M": 47413006696597, "L": 47413006729365, "XL": 47413006762133, "XXL": 47413006794901}}}, "soldout": {"retro": "L is sold out. S, M, XL and XXL are in stock."}}, STORE='https://beeasy.online';
+const PAGE={"name": "Retro Set", "now": 8050, "styles": {"retro": {"label": null, "photo": 0, "out": ["L"], "handle": "be-easy-retro-set", "variants": {"S": 47413006205077, "M": 47413006696597, "L": 47413006729365, "XL": 47413006762133, "XXL": 47413006794901}}}, "soldout": {"retro": "L is sold out. S, M, XL and XXL are in stock."}}, STORE='https://beeasy.online';
 const money=c=>new Intl.NumberFormat('en-US',{style:'currency',currency:'USD'}).format(c/100);
 let tags='';
 try{const keep=new URLSearchParams();new URLSearchParams(location.search).forEach((v,k)=>{if(/^(utm_[a-z_]{1,20}|fbclid|gclid|ttclid|msclkid)$/i.test(k)&&v.length<=300)keep.append(k,v);});tags=keep.toString();if(tags)sessionStorage.setItem('beeasy-bf-tags',tags);else tags=sessionStorage.getItem('beeasy-bf-tags')||'';}catch{}
@@ -430,6 +432,9 @@ function render(){
 }
 const needSize=e=>{if(size())return;e.preventDefault();document.getElementById('buy').scrollIntoView({behavior:calm.matches?'auto':'smooth',block:'center'});hint.textContent='Pick your size first.';const first=form.querySelector('input[name=size]:not(:disabled)');if(first)first.focus({preventScroll:true});};
 [buy,barBtn,...again].forEach(a=>a.addEventListener('click',needSize));
+const pixelEvent=(ev)=>{try{if(window.fbq)fbq('track',ev,{content_name:PAGE.name,content_type:'product',value:PAGE.now/100,currency:'USD'});}catch(e){}};
+pixelEvent('ViewContent');
+[buy,barBtn,...again].forEach(a=>a.addEventListener('click',()=>{if(size())pixelEvent('AddToCart');}));
 form.addEventListener('change',e=>{render();if(e.target.name==='style')goTo(PAGE.styles[e.target.value].photo);});
 let tick=0, off=false;
 const check=()=>{tick=0;const r=buy.getBoundingClientRect();const o=phone.matches&&(r.bottom<60||r.top>innerHeight-8);if(o!==off){off=o;bar.classList.toggle('visible',o);bar.setAttribute('aria-hidden',String(!o));}};
