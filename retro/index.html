@@ -229,7 +229,20 @@ button{font-family:inherit;cursor:pointer}
 .style-picker{border:0;margin:16px 0 0;padding:0}
 .style-picker legend,.size-head{font-size:12px;font-weight:600;margin-bottom:9px}
 .size-head{display:flex;justify-content:space-between;align-items:baseline;margin:18px 0 9px}
-.size-head a{font-size:10px;font-weight:500;color:var(--muted);text-underline-offset:3px}
+.size-head a,.size-head button{font:500 10px var(--sans);color:var(--muted);text-decoration:underline;text-underline-offset:3px;background:none;border:0;padding:4px 0;cursor:pointer}
+#size-dialog{border:0;padding:26px 24px 22px;width:min(560px,calc(100% - 24px));max-height:88vh;background:var(--paper);color:var(--ink)}
+#size-dialog::backdrop{background:#0008}
+.sc-head{display:flex;justify-content:space-between;align-items:start;gap:12px;margin-bottom:6px}
+.sc-head h2{font:600 24px/1.1 var(--display);letter-spacing:-.04em;margin:0}
+.sc-head button{border:0;background:none;font-size:26px;line-height:1;padding:0 4px;cursor:pointer;color:var(--ink)}
+.sc-sub{font-size:11px;color:var(--muted);margin:0 0 16px}
+.sc-part{font:600 13px var(--display);margin:16px 0 6px}
+.sc-table{width:100%;border-collapse:collapse;font-size:12px}
+.sc-table th,.sc-table td{border-bottom:1px solid var(--line);padding:8px 6px;text-align:center}
+.sc-table th{font-weight:600;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.sc-table td:first-child,.sc-table th:first-child{text-align:left;font-weight:600;color:var(--ink)}
+.sc-table td.na{color:#b4afa5}
+.sc-note{font-size:11px;color:var(--muted);margin:16px 0 0;line-height:1.55}
 .size-picker{margin:0}
 .size-picker legend{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 .styles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
@@ -310,7 +323,7 @@ body{padding-bottom:calc(70px + env(safe-area-inset-bottom))}
     <div class="byline">Retro Set · Grey/Black · Windbreaker and track pants</div>
     <div class="price-row"><span class="price">$80.50</span><s class="was">$115</s><span class="save">30% off</span><span class="currency">USD</span></div>
     <div class="offer"><div class="offer-title">No code needed.</div><div class="offer-sub">The 30% comes off automatically at checkout on beeasy.online.</div></div>
-    <form id="buy" onsubmit="return false"><input type="hidden" name="style" value="retro"><div class="size-head"><span>Choose your size</span><a id="size-guide" href="https://beeasy.online/products/be-easy-retro-set" target="_blank" rel="noopener">Size guide ↗</a></div><fieldset class="size-picker"><legend>Size</legend><div class="sizes"><label><input type="radio" name="size" value="S" aria-label="S"><span>S</span></label><label><input type="radio" name="size" value="M" aria-label="M"><span>M</span></label><label title="Sold out"><input type="radio" name="size" value="L" disabled aria-label="L, sold out"><span>L</span></label><label><input type="radio" name="size" value="XL" aria-label="XL"><span>XL</span></label><label><input type="radio" name="size" value="XXL" aria-label="XXL"><span>XXL</span></label></div></fieldset>
+    <form id="buy" onsubmit="return false"><input type="hidden" name="style" value="retro"><div class="size-head"><span>Choose your size</span><button type="button" id="size-guide" aria-haspopup="dialog">Size chart</button></div><fieldset class="size-picker"><legend>Size</legend><div class="sizes"><label><input type="radio" name="size" value="S" aria-label="S"><span>S</span></label><label><input type="radio" name="size" value="M" aria-label="M"><span>M</span></label><label title="Sold out"><input type="radio" name="size" value="L" disabled aria-label="L, sold out"><span>L</span></label><label><input type="radio" name="size" value="XL" aria-label="XL"><span>XL</span></label><label><input type="radio" name="size" value="XXL" aria-label="XXL"><span>XXL</span></label></div></fieldset>
     <a class="button buy-now" id="buy-now" href="#buy" aria-disabled="true">Choose your size</a><p class="hint" id="hint" role="status" aria-live="polite"></p></form>
     <p class="soldout-note" id="soldout-note">L is sold out. S, M, XL and XXL are in stock.</p>
     <p class="fine">Checkout on beeasy.online, BEEASY's own store. Shipping is calculated at checkout. Prices in USD; outside the US, checkout shows your currency.</p>
@@ -329,6 +342,7 @@ body{padding-bottom:calc(70px + env(safe-area-inset-bottom))}
 
 <aside class="quick-buy" id="quick-buy" aria-label="Buy" aria-hidden="true"><div><div class="quick-title">Retro Set</div><div class="quick-price">$80.50 USD · 30% off</div></div><a class="button" id="bar-btn" href="#buy" aria-disabled="true">Choose size</a></aside>
 
+<dialog id="size-dialog" aria-labelledby="size-title"><div class="sc-head"><h2 id="size-title">Size chart · Retro Set</h2><button type="button" id="size-close" aria-label="Close size chart">×</button></div><p class="sc-sub">Inches, measured flat. Sizes S to XXL.</p><p class="sc-part">Windbreaker</p><table class="sc-table"><thead><tr><th scope="col">Size</th><th scope="col">Chest (pit to pit)</th><th scope="col">Length</th><th scope="col">Sleeve</th></tr></thead><tbody><tr><td>S</td><td class="na">–</td><td class="na">–</td><td class="na">–</td></tr><tr><td>M</td><td class="na">–</td><td class="na">–</td><td class="na">–</td></tr><tr><td>L</td><td class="na">–</td><td class="na">–</td><td class="na">–</td></tr><tr><td>XL</td><td class="na">–</td><td class="na">–</td><td class="na">–</td></tr><tr><td>XXL</td><td class="na">–</td><td class="na">–</td><td class="na">–</td></tr></tbody></table><p class="sc-part">Track pants</p><table class="sc-table"><thead><tr><th scope="col">Size</th><th scope="col">Waist</th><th scope="col">Inseam</th><th scope="col">Leg opening</th></tr></thead><tbody><tr><td>S</td><td class="na">–</td><td class="na">–</td><td class="na">–</td></tr><tr><td>M</td><td class="na">–</td><td class="na">–</td><td class="na">–</td></tr><tr><td>L</td><td class="na">–</td><td class="na">–</td><td class="na">–</td></tr><tr><td>XL</td><td class="na">–</td><td class="na">–</td><td class="na">–</td></tr><tr><td>XXL</td><td class="na">–</td><td class="na">–</td><td class="na">–</td></tr></tbody></table><p class="sc-note">Measurements are being added. Questions about fit? Email <a href="mailto:info@beeasy.online">info@beeasy.online</a>.</p></dialog>
 <script>
 const PAGE={"now": 8050, "styles": {"retro": {"label": null, "photo": 0, "out": ["L"], "handle": "be-easy-retro-set", "variants": {"S": 47413006205077, "M": 47413006696597, "L": 47413006729365, "XL": 47413006762133, "XXL": 47413006794901}}}, "soldout": {"retro": "L is sold out. S, M, XL and XXL are in stock."}}, STORE='https://beeasy.online';
 const money=c=>new Intl.NumberFormat('en-US',{style:'currency',currency:'USD'}).format(c/100);
@@ -396,7 +410,6 @@ function render(){
   form.querySelectorAll('input[name=size]').forEach(inp=>{const out=st.out.includes(inp.value);inp.disabled=out;if(out&&inp.checked)inp.checked=false;inp.closest('label').title=out?'Sold out':'';inp.setAttribute('aria-label',inp.value+(out?', sold out':''));});
   const legend=document.getElementById('style-name');if(legend)legend.textContent=st.label;
   note.textContent=PAGE.soldout[style()];
-  const guide=document.getElementById('size-guide');guide.href=withTags(STORE+'/products/'+st.handle);
   const pick=size();
   if(pick){
     const url=withTags(STORE+'/cart/'+st.variants[pick]+':1');
@@ -419,6 +432,10 @@ let tick=0, off=false;
 const check=()=>{tick=0;const r=buy.getBoundingClientRect();const o=phone.matches&&(r.bottom<60||r.top>innerHeight-8);if(o!==off){off=o;bar.classList.toggle('visible',o);bar.setAttribute('aria-hidden',String(!o));}};
 addEventListener('scroll',()=>{if(!tick)tick=requestAnimationFrame(check);},{passive:true});
 addEventListener('resize',check);
+const sd=document.getElementById('size-dialog');
+document.getElementById('size-guide').addEventListener('click',()=>sd.showModal());
+document.getElementById('size-close').addEventListener('click',()=>sd.close());
+sd.addEventListener('click',e=>{if(e.target===sd)sd.close();});
 render();check();
 </script>
 </body>
